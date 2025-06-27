@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black",
+  "python.linting.flake8Enabled": true,
+  "tailwindCSS.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  }
+}

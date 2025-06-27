@@ -1,0 +1,30 @@
+name: Deploy Medical Coding SaaS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: Deploy to Vercel
+        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+        working-directory: ./frontend
+
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Deploy to Railway
+        run: railway up --token ${{ secrets.RAILWAY_TOKEN }}
+        working-directory: ./backend
